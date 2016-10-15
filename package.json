@@ -1,0 +1,11 @@
+{
+  "name": "elm-devmeetings",
+  "version": "1.0.0",
+  "description": "Devmeetings Elm workshop",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David G. Shannon",
+  "license": "MIT"
+}
