@@ -1,11 +1,21 @@
 {
-  "name": "elm-devmeetings",
-  "version": "1.0.0",
-  "description": "Devmeetings Elm workshop",
-  "main": "bundle.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "David G. Shannon",
-  "license": "MIT"
+    "name": "elm-devmeetings",
+    "version": "1.0.0",
+    "description": "Devmeetings Elm workshop",
+    "main": "bundle.js",
+    "devDependencies": {
+        "clear": "0.0.1",
+        "gulp": "^3.9.1",
+        "gulp-util": "^3.0.7",
+        "st": "^1.1.0"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "gulp",
+        "watch": "gulp watch",
+        "build": "gulp elm",
+        "server": "gulp server"
+    },
+    "author": "David G. Shannon",
+    "license": "MIT"
 }
