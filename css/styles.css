@@ -56,6 +56,11 @@ body {
     padding-left: 10px;
 }
 
+.leaderboard .player-name {
+    text-align: center;
+    min-width: 100px;
+}
+
 .leaderboard .score {
     padding-right: 10px;
 }
