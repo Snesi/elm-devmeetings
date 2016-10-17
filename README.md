@@ -1,5 +1,7 @@
 # Elm Workshop
 
+![Leaderboard in action](http://g.recordit.co/DnsFbL8TzX.gif "Leaderboard in action")
+
 This project was designed to teach the basics about Elm.
 
 Pre-requesits:
