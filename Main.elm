@@ -32,7 +32,7 @@ initModel =
     , newPlayer = ""
     , newScore = ""
     , errorMessage = ""
-    , title = "Nyan Cat Model (in seconds)"
+    , title = "Nyan Cat Leaderboard (in seconds)"
     }
 
 
