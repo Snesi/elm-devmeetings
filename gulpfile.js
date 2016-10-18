@@ -17,14 +17,14 @@ gulp.task('watch', function(cb) {
 });
 
 gulp.task('server', function(done) {
-    gutil.log(gutil.colors.blue('Starting server at http://localhost:4000'));
+    gutil.log(gutil.colors.blue('Starting server at https://'+ process.env.IP +':'+process.env.PORT));
     http.createServer(
         st({
             path: __dirname,
             index: 'index.html',
             cache: false
         })
-    ).listen(4000, done);
+    ).listen(process.env.PORT || 4000, process.env.IP || "localhost", done);
 });
 
 gulp.task('elm', function(cb) {
