@@ -28,7 +28,10 @@ type alias Player =
 
 initModel : Model
 initModel =
-    { players = []
+    { players = 
+        [ Player "David" 5000 1
+        , Player "Gabi" 3000 2 
+        ]
     , newPlayer = ""
     , newScore = ""
     , errorMessage = ""
@@ -44,6 +47,7 @@ type Msg
     = InputScore String
     | InputPlayer String
     | AddPlayer
+    | RemovePlayer Int
 
 
 update : Msg -> Model -> Model
@@ -57,6 +61,11 @@ update msg model =
 
         AddPlayer ->
             addPlayer model
+            
+        RemovePlayer id ->
+            { model 
+                | players = (List.filter (\p -> p.id /= id) model.players)
+            }
 
 
 addPlayer : Model -> Model
@@ -136,6 +145,9 @@ player index player =
             [ text player.name ]
         , div [ class "score" ]
             [ text (toString player.score) ]
+        , button [ class "btn-close", onClick (RemovePlayer player.id) ]
+            [ i [ class "fa fa-times fa-2x" ] []
+            ]
         ]
 
 
