@@ -5,15 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/styles.css">
     <title>Elm Ridiculous Leaderboards</title>
 </head>
 
 <body>
+    <div>
+        <h1>Elm for beginners - Devmeetings</h1>
+        <p>This project is intented to be built in a Devmeetings workshop.</p>
+        <p>In order to start the project please input npm start in your command line.</p>
+    </div>
     <div id="app"></div>
     <script src="bundle.js"></script>
     <script>
+        /* global Elm */
         var app = Elm.Main.embed(document.getElementById("app"));
     </script>
 </body>
