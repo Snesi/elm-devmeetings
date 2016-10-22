@@ -29,7 +29,7 @@ Someone who...
 - Has never used Elm before
 - Has little to no knowledge of functional programming
 
-#### Workshop Goal
+#### Workshop Goals
 
 By the end of the workshop they should be able to program small interactive components for any website. This way they can slowly introduce Elm in their day to day work.
 
@@ -40,7 +40,7 @@ List of features:
 - Elm package manager
 - ELm build process
 - Elm syntax
-- Elm architecture
+- Elm Architecture
 - Elm types
 - Elm Html module
 - Elm Html.Attributes module
@@ -53,5 +53,34 @@ During the workshop the students will develop a very basic leaderboard.
 
 The leaderboard can be used for ranking anything but it needs to be sorted in descending order and have two inputs to add a new player score.
 
+#### Sprints
 
+1. Elm Hello World
+2. Basic Elm Architecture example
+3. Leaderboard layout
+4. Input new players
+5. Sort leaderboard
+6. Store/Read ranking in firebase
 
+#### 1. Elm Hello World
+
+- [ ] Install Elm
+- [ ] Install Elm plugins for student's editors
+- [ ] Setup Elm project 
+- [ ] Checkout Elm docs
+- [ ] Use Html.text to output "Hello World"
+- [ ] Elm functions, infix funtions, composition, forward and backward function application
+- [ ] Local "variables"
+
+#### 2. Basic Elm Architecture
+
+- [ ] Write a model, view and update section and use beginnerProgram
+- [ ] Create a simple counter with an Increase and a Decrease button
+
+#### 3. Leaderboard layout
+
+- [ ] Create leaderboard layout in Elm html
+- [ ] Write user actions in the app (Type Msg)
+- [ ] Write app model
+
+#### 4. Input new players
