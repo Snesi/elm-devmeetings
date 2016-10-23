@@ -89,10 +89,10 @@ The leaderboard can be used for ranking anything but it needs to be sorted in de
 - [ ] Add events to inputs
 - [ ] Add new players to the model
 - [ ] Check if score is a number
-- [ ] (Additional) add a remove button to each score
+- [ ] Add a remove button to each score (Additional)
 
 #### 5. Store/Read ranking in firebase
 
 - [ ] Add ports for reading/adding players to firebase
 - [ ] Subscribe to events
-- [ ] (Extra) Add new input for user's github account and display each user's profile image in leaderboard.
+- [ ] Add new input for user's github account and display each user's profile image in leaderboard. (Extra)
