@@ -18,10 +18,32 @@
         <p>In order to start the project please input npm start in your command line.</p>
     </div>
     <div id="app"></div>
+    <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+    <script type="text/javascript" src="js/fbConfig.js"></script>
+    <script type="text/javascript" src="js/leaderboardFirebase.js"></script>
     <script src="bundle.js"></script>
     <script>
         /* global Elm */
         var app = Elm.Main.embed(document.getElementById("app"));
+        app.ports.addScore.subscribe(function(newScore) {
+            console.log(newScore);
+            addScore(newScore)
+                .then(function(response) {
+                    console.log("Saved!");
+                    // app.ports.scoreSaved.send(response.key);
+                }, function(err) {
+                    console.log("error:", err);
+                });
+        });
+        
+        var listener = scoreListener();
+        listener.on("child_added", function(data) {
+            var score = Object.assign({
+                id: data.key
+            }, data.val());
+            app.ports.newScore.send(score);
+        });
+        
     </script>
 </body>
 

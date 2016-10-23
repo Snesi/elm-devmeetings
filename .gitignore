@@ -5,3 +5,4 @@ dist
 bundle.js
 app.css.map
 Junk.elm
+js/fbConfig.js

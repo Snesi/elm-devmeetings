@@ -1,4 +1,4 @@
-module Main exposing (..)
+port module Main exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -22,22 +22,23 @@ type alias Model =
 type alias Player =
     { name : String
     , score : Int
-    , id : Int
+    , id : String
     }
 
 
 initModel : Model
 initModel =
-    { players = 
-        [ Player "David" 5000 1
-        , Player "Gabi" 3000 2 
-        ]
+    { players = []
     , newPlayer = ""
     , newScore = ""
     , errorMessage = ""
     , title = "Nyan Cat Leaderboard (in seconds)"
     }
 
+
+init : (Model, Cmd Msg)
+init =
+    (initModel, Cmd.none)
 
 
 -- update
@@ -46,47 +47,43 @@ initModel =
 type Msg
     = InputScore String
     | InputPlayer String
-    | AddPlayer
-    | RemovePlayer Int
+    | AddPlayer Player
+    | SavePlayer
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
     case msg of
         InputScore score ->
-            { model | newScore = score }
+            ({ model | newScore = score }, Cmd.none)
 
         InputPlayer player ->
-            { model | newPlayer = player }
+            ({ model | newPlayer = player }, Cmd.none)
 
-        AddPlayer ->
+        AddPlayer player ->
+            ({ model 
+                | players = player::model.players
+                , newPlayer = ""
+                , newScore = ""
+                , errorMessage = ""
+            }, Cmd.none)
+            
+        SavePlayer ->
             addPlayer model
             
-        RemovePlayer id ->
-            { model 
-                | players = (List.filter (\p -> p.id /= id) model.players)
-            }
 
 
-addPlayer : Model -> Model
+addPlayer : Model -> (Model, Cmd Msg)
 addPlayer model =
     case String.toInt model.newScore of
         Ok score ->
             let
-                newPlayer =
-                    Player model.newPlayer
-                        score
-                        (List.length model.players)
-            in
-                { model
-                    | players = newPlayer :: model.players
-                    , newScore = ""
-                    , newPlayer = ""
-                    , errorMessage = ""
-                }
+                newScore = { name = model.newPlayer, score = score }
+            in 
+                (model, addScore newScore)
 
         Err err ->
-            { model | errorMessage = "Please add a valid score." }
+            ({ model | errorMessage = "Please add a valid score." }, Cmd.none)
 
 
 
@@ -105,7 +102,7 @@ view model =
 
 playerForm : Model -> Html Msg
 playerForm model =
-    Html.form [ action "#", class "new-player", onSubmit AddPlayer ]
+    Html.form [ action "#", class "new-player", onSubmit SavePlayer ]
         [ input
             [ name "player-name"
             , placeholder "Add player..."
@@ -145,16 +142,24 @@ player index player =
             [ text player.name ]
         , div [ class "score" ]
             [ text (toString player.score) ]
-        , button [ class "btn-close", onClick (RemovePlayer player.id) ]
-            [ i [ class "fa fa-times fa-2x" ] []
-            ]
         ]
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.batch 
+        [ newScore AddPlayer ]
+        
+        
+port addScore : {name: String, score: Int} -> Cmd msg
+port newScore : (Player -> msg) -> Sub msg
 
 
 main : Program Never
 main =
-    App.beginnerProgram
-        { model = initModel
+    App.program
+        { init = init
         , view = view
         , update = update
+        , subscriptions = subscriptions
         }
