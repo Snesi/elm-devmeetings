@@ -38,7 +38,7 @@ They should be able to make small apps with `Html.beginnerProgram`.
 List of features:
 
 - Elm package manager
-- ELm build process
+- Elm build process
 - Elm syntax
 - Elm Architecture
 - Elm types
@@ -46,6 +46,7 @@ List of features:
 - Elm Html.Attributes module
 - Elm Html.Events module
 - Elm List operations like map, filter, reverse...
+- Elm Ports for JS interop
 
 #### The App
 
@@ -84,3 +85,14 @@ The leaderboard can be used for ranking anything but it needs to be sorted in de
 - [ ] Write app model
 
 #### 4. Input new players
+
+- [ ] Add events to inputs
+- [ ] Add new players to the model
+- [ ] Check if score is a number
+- [ ] (Additional) add a remove button to each score
+
+#### 5. Store/Read ranking in firebase
+
+- [ ] Add ports for reading/adding players to firebase
+- [ ] Subscribe to events
+- [ ] (Extra) Add new input for user's github account and display each user's profile image in leaderboard.
