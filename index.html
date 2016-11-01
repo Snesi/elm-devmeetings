@@ -24,6 +24,8 @@
     <script src="bundle.js"></script>
     <script>
         /* global Elm */
+        /* global addScore */
+        /* global scoreListener */
         var app = Elm.Main.embed(document.getElementById("app"));
         app.ports.addScore.subscribe(function(newScore) {
             console.log(newScore);
