@@ -73,6 +73,22 @@ body {
     font-size: 16px;
 }
 
+.leaderboard .btn-cancel {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: gray;
+    font-size: 16px;
+}
+
+.leaderboard .btn-save {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: green;
+    font-size: 16px;
+}
+
 
 .new-player {
     margin: 0 auto;

@@ -23,14 +23,17 @@ type alias Player =
     { name : String
     , score : Int
     , id : Int
+    , inEditMode: Bool
+    , newName : String
+    , newScore : String
     }
 
 
 initModel : Model
 initModel =
     { players = 
-        [ Player "David" 5000 1
-        , Player "Gabi" 3000 2 
+        [ Player "David" 5000 1 False "" ""
+        , Player "Gabi" 3000 2 False "" ""
         ]
     , newPlayer = ""
     , newScore = ""
@@ -48,6 +51,12 @@ type Msg
     | InputPlayer String
     | AddPlayer
     | RemovePlayer Int
+    | EditPlayer Int
+    | InputNewPlayer Int String
+    | InputNewScore Int String
+    | UpdatePlayer Int
+    | CancelEdit Int
+    
 
 
 update : Msg -> Model -> Model
@@ -64,9 +73,43 @@ update msg model =
             
         RemovePlayer id ->
             { model 
-                | players = (List.filter (\p -> p.id /= id) model.players)
+                | players = List.filter (\p -> p.id /= id) model.players
             }
-
+            
+        EditPlayer id ->
+            { model 
+                | players = List.map 
+                                (\p -> 
+                                    if p.id /= id then 
+                                        p 
+                                    else 
+                                        { p 
+                                            | inEditMode=True
+                                            , newName = p.name
+                                            , newScore = toString p.score 
+                                            
+                                        }) model.players
+            }
+            
+        InputNewPlayer id newName ->
+            { model 
+                | players = List.map (\p -> if p.id /= id then p else { p | newName=newName }) model.players
+            }
+        
+        InputNewScore id newScore ->
+            { model 
+                | players = List.map (\p -> if p.id /= id then p else { p | newScore=newScore }) model.players
+            }
+            
+        UpdatePlayer id ->
+            { model 
+                | players = List.map (updatePlayer id) model.players
+            }
+            
+        CancelEdit id ->
+            { model 
+                | players = List.map (\p -> if p.id /= id then p else { p | inEditMode=False }) model.players
+            }
 
 addPlayer : Model -> Model
 addPlayer model =
@@ -74,9 +117,13 @@ addPlayer model =
         Ok score ->
             let
                 newPlayer =
-                    Player model.newPlayer
+                    Player 
+                        model.newPlayer
                         score
                         (List.length model.players)
+                        False
+                        ""
+                        ""
             in
                 { model
                     | players = newPlayer :: model.players
@@ -88,6 +135,19 @@ addPlayer model =
         Err err ->
             { model | errorMessage = "Please add a valid score." }
 
+
+updatePlayer : Int -> Player -> Player
+updatePlayer id player =
+    if player.id /= id then 
+        player
+    else 
+        { player 
+            | name = player.newName
+            , score = Result.withDefault 0 (String.toInt player.newScore)
+            , newName = ""
+            , newScore = ""
+            , inEditMode = False
+        }
 
 
 -- view
@@ -138,7 +198,37 @@ playerList model =
 
 player : Int -> Player -> Html Msg
 player index player =
+    if player.inEditMode then
+        editablePlayerRow index player
+    else 
+        normalPlayerRow index player        
+
+
+editablePlayerRow : Int -> Player -> Html Msg
+editablePlayerRow index player = 
     li []
+        [ div [ class "ranking-number" ]
+            [ text (toString (index + 1)) ]
+        , input 
+            [ value player.newName 
+            , onInput (InputNewPlayer player.id)
+            ][]
+        , input 
+            [ value player.newScore
+            , onInput (InputNewScore player.id)
+            ][]
+        , button [ class "btn-cancel", onClick (CancelEdit player.id) ]
+            [ i [ class "fa fa-times" ] []
+            ]
+        , button [ class "btn-save", onClick (UpdatePlayer player.id) ]
+            [ i [ class "fa fa-check" ] []
+            ]
+        ]
+
+
+normalPlayerRow : Int -> Player -> Html Msg
+normalPlayerRow index player = 
+    li [ onClick (EditPlayer player.id) ]
         [ div [ class "ranking-number" ]
             [ text (toString (index + 1)) ]
         , div [ class "player-name" ]
