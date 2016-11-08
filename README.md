@@ -90,6 +90,7 @@ The leaderboard can be used for ranking anything but it needs to be sorted in de
 - [ ] Add new players to the model
 - [ ] Check if score is a number
 - [ ] Add a remove button to each score (Additional)
+- [ ] Make Leaderboard rows editable (Extra)
 
 #### 5. Store/Read ranking in firebase
 
