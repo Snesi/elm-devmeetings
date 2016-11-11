@@ -1,0 +1,114 @@
+html, body {
+    width: 100%;
+}
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    background-color: #27233A;
+    color: #efefef;
+}
+
+.leaderboard {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.leaderboard>ol {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    list-style: none;
+}
+
+.leaderboard>h2 {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+.leaderboard>ol>li {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 90%;
+    background-color: #505168;
+}
+.leaderboard>ol>li:first-child {
+    max-width: 100%;
+    background-color: #ABA9C3;
+}
+
+.leaderboard>ol>li>div {
+    display: inline-block;
+    line-height: 2em;
+}
+
+.leaderboard>ol>li:first-child>div {
+    font-size: 2em;
+}
+
+.leaderboard .ranking-number {
+    padding-left: 10px;
+}
+
+.leaderboard .player-name {
+    text-align: center;
+    min-width: 100px;
+}
+
+.leaderboard .score {
+    padding-right: 10px;
+}
+
+.leaderboard .btn-close {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: red;
+    font-size: 16px;
+}
+
+.leaderboard .btn-cancel {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: gray;
+    font-size: 16px;
+}
+
+.leaderboard .btn-save {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: green;
+    font-size: 16px;
+}
+
+
+.new-player {
+    margin: 0 auto;
+    max-width: 90%;
+    display: flex;
+    align-content: stretch;
+}
+
+.new-player>input {
+    line-height: 2em;
+    border: 0;
+    padding: 0 10px;
+}
+
+.new-player>input:first-child {
+    border-right: 3px solid #eeeeee;
+    width: 50%;
+}
+
+.new-player>.btn-add {
+    background-color: #DCC48E;
+    color: #ffffff;
+}
