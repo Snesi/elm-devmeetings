@@ -5,6 +5,10 @@ import Html.Attributes exposing (..)
 import Html.App as App
 
 -- model
+
+type alias Model = Int
+
+model : Model
 model = 0
 
 
@@ -14,7 +18,7 @@ type Msg
     = Increment
     | Decrement
 
-
+update : Msg -> Model -> Model
 update msg model = 
     case msg of
         Increment ->
@@ -24,7 +28,7 @@ update msg model =
             
 
 -- view
-
+view : Model -> Html a
 view model = 
     div []
         [ input [ value (toString model) ] []
@@ -32,7 +36,7 @@ view model =
         , button [] [ text "Resta 1" ]
         ]
         
-        
+main : Program Never    
 main =
     App.beginnerProgram 
         { model = model
