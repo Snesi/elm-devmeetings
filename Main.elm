@@ -29,36 +29,7 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div [ class "leaderboard" ]
-        [ h2 []
-            [ text "Nyan Cat Leaderboard" ]
-        , ol [] 
-            [ li []
-                [ div [ class "ranking-number" ]
-                    [ text "1" ]
-                , div [ class "player-name" ]
-                    [ text "David" ]
-                , div [ class "score" ]
-                    [ text "5000" ]
-                ]
-            ]
-        , Html.form [ class "new-player" ]
-            [ input
-                [ name "player-name"
-                , placeholder "Add player..."
-                , type' "text"
-                ]
-                []
-            , input
-                [ name "score"
-                , placeholder "Score"
-                , type' "text"
-                ]
-                []
-            , input [ class "btn-add", type' "submit", value "+" ]
-                []
-            ]
-        ]
+    div [ ][ text "Leaderboard goes here" ]
 
 
 main : Program Never
